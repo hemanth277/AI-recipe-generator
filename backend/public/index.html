@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Recipe Generator - Transform your ingredients into delicious recipes using artificial intelligence">
+  <title>AI Recipe Generator | Create Amazing Recipes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-animation">
+    <div class="floating-shape shape-1">🍕</div>
+    <div class="floating-shape shape-2">🥗</div>
+    <div class="floating-shape shape-3">🍰</div>
+    <div class="floating-shape shape-4">🍜</div>
+    <div class="floating-shape shape-5">🥘</div>
+    <div class="floating-shape shape-6">🍣</div>
+    <div class="floating-shape shape-7">🌮</div>
+    <div class="floating-shape shape-8">🧁</div>
+  </div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header" id="app-header">
+      <div class="logo-section">
+        <div class="logo-icon">🍳</div>
+        <div>
+          <h1 class="logo-title">RecipeAI</h1>
+          <p class="logo-subtitle">Transform ingredients into culinary magic</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Input Section -->
+      <section class="input-section glass-card" id="input-section">
+        <div class="section-header">
+          <h2 class="section-title">What's in your kitchen?</h2>
+          <p class="section-desc">Enter your ingredients and preferences — our AI chef will craft the perfect recipe for you.</p>
+        </div>
+
+        <form id="recipe-form" class="recipe-form">
+          <!-- Ingredients Input -->
+          <div class="form-group">
+            <label for="ingredients-input" class="form-label">
+              <span class="label-icon">🥕</span> Ingredients
+            </label>
+            <textarea 
+              id="ingredients-input" 
+              class="form-input textarea" 
+              placeholder="e.g., chicken breast, garlic, lemon, olive oil, rosemary, potatoes..."
+              rows="3"
+              required
+            ></textarea>
+          </div>
+
+          <!-- Options Row -->
+          <div class="options-grid">
+            <div class="form-group">
+              <label for="cuisine-select" class="form-label">
+                <span class="label-icon">🌍</span> Cuisine
+              </label>
+              <select id="cuisine-select" class="form-input select">
+                <option value="">Any Cuisine</option>
+                <option value="Italian">Italian</option>
+                <option value="Indian">Indian</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Japanese">Japanese</option>
+                <option value="Mexican">Mexican</option>
+                <option value="Thai">Thai</option>
+                <option value="French">French</option>
+                <option value="Mediterranean">Mediterranean</option>
+                <option value="Korean">Korean</option>
+                <option value="American">American</option>
+                <option value="Middle Eastern">Middle Eastern</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="meal-select" class="form-label">
+                <span class="label-icon">🍽️</span> Meal Type
+              </label>
+              <select id="meal-select" class="form-input select">
+                <option value="">Any Meal</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Snack">Snack</option>
+                <option value="Dessert">Dessert</option>
+                <option value="Appetizer">Appetizer</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="diet-select" class="form-label">
+                <span class="label-icon">🥬</span> Diet
+              </label>
+              <select id="diet-select" class="form-input select">
+                <option value="">No Preference</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Vegan">Vegan</option>
+                <option value="Gluten-Free">Gluten-Free</option>
+                <option value="Keto">Keto</option>
+                <option value="Low-Carb">Low-Carb</option>
+                <option value="Dairy-Free">Dairy-Free</option>
+                <option value="Paleo">Paleo</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="servings-input" class="form-label">
+                <span class="label-icon">👥</span> Servings
+              </label>
+              <select id="servings-input" class="form-input select">
+                <option value="1">1 person</option>
+                <option value="2">2 people</option>
+                <option value="4" selected>4 people</option>
+                <option value="6">6 people</option>
+                <option value="8">8 people</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" id="generate-btn" class="generate-btn">
+            <span class="btn-content">
+              <span class="btn-icon">✨</span>
+              <span class="btn-text">Generate Recipe</span>
+            </span>
+            <span class="btn-loading" style="display:none;">
+              <span class="spinner"></span>
+              <span>Creating your recipe...</span>
+            </span>
+          </button>
+        </form>
+      </section>
+
+      <!-- Recipe Result Section -->
+      <section class="recipe-section" id="recipe-section" style="display:none;">
+        <div class="recipe-card glass-card" id="recipe-card">
+          <!-- Recipe Header -->
+          <div class="recipe-header">
+            <h2 class="recipe-name" id="recipe-name"></h2>
+            <p class="recipe-description" id="recipe-description"></p>
+            
+            <!-- Meta Info -->
+            <div class="recipe-meta" id="recipe-meta"></div>
+          </div>
+
+          <!-- Nutrition Badge -->
+          <div class="nutrition-strip" id="nutrition-strip"></div>
+
+          <!-- Ingredients & Instructions -->
+          <div class="recipe-body">
+            <div class="recipe-column">
+              <h3 class="column-title"><span class="col-icon">📝</span> Ingredients</h3>
+              <ul class="ingredients-list" id="ingredients-list"></ul>
+            </div>
+            <div class="recipe-column instructions-col">
+              <h3 class="column-title"><span class="col-icon">👨‍🍳</span> Instructions</h3>
+              <ol class="instructions-list" id="instructions-list"></ol>
+            </div>
+          </div>
+
+          <!-- Tips Section -->
+          <div class="tips-section" id="tips-section">
+            <h3 class="column-title"><span class="col-icon">💡</span> Chef's Tips</h3>
+            <div class="tips-grid" id="tips-grid"></div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="recipe-actions">
+            <button class="action-btn" id="new-recipe-btn" onclick="scrollToTop()">
+              <span>🔄</span> New Recipe
+            </button>
+            <button class="action-btn secondary" id="print-btn" onclick="window.print()">
+              <span>🖨️</span> Print
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Error Display -->
+      <div class="error-card glass-card" id="error-card" style="display:none;">
+        <div class="error-icon">⚠️</div>
+        <p class="error-message" id="error-message"></p>
+        <button class="action-btn" onclick="document.getElementById('error-card').style.display='none'">Try Again</button>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Powered by AI • Made with ❤️ and a pinch of magic</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
